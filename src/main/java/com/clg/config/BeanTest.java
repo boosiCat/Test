@@ -3,6 +3,11 @@ package com.clg.config;
 import com.clg.entity.LombokTestEntity;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Author 小台
@@ -10,6 +15,10 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class BeanTest {
+
+    public BeanTest(){
+        System.out.println("============");
+    }
 
     @Bean("lombokTestEntity")
     public LombokTestEntity initA(){
