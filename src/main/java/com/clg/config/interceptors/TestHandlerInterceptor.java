@@ -1,4 +1,4 @@
-package com.clg.config;
+package com.clg.config.interceptors;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;

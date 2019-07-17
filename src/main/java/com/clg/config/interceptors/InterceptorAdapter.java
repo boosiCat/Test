@@ -1,4 +1,4 @@
-package com.clg.config;
+package com.clg.config.interceptors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class InterceptorAdapter extends WebMvcConfigurerAdapter {
 
     @Autowired
-    private TestHandlerInterceptor TestHandlerInterceptor;
+    private com.clg.config.interceptors.TestHandlerInterceptor TestHandlerInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
