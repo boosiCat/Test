@@ -6,19 +6,24 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * @Author 小台
- * @Date 2019/4/3011:18
+ * @Author cailiugen
+ * @Date 2019/4/30
  */
 @Configuration
-public class InterceptorAdapter extends WebMvcConfigurerAdapter {
+public class InterceptorAdapterAdd extends WebMvcConfigurerAdapter {
 
     @Autowired
-    private com.clg.config.interceptors.TestHandlerInterceptor TestHandlerInterceptor;
+    private TestHandlerInterceptor testHandlerInterceptor;
+
+    @Autowired
+    private InitHandlerInterceptor initHandlerInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(TestHandlerInterceptor).addPathPatterns("/**");
         super.addInterceptors(registry);
+        registry.addInterceptor(testHandlerInterceptor).addPathPatterns("/test/**");
+        registry.addInterceptor(initHandlerInterceptor).addPathPatterns("/**").excludePathPatterns("/other/**");
+
     }
 
 

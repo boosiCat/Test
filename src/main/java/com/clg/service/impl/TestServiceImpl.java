@@ -11,10 +11,8 @@ import javax.annotation.Resource;
 public class TestServiceImpl implements TestService {
 
     @Autowired
-    @Resource(name = "LombokTestEntity")
     private LombokTestEntity LombokTestEntity;
     @Autowired
-    @Resource(name = "lombokTestEntity")
     private LombokTestEntity lombokTestEntity;
 
     @Override

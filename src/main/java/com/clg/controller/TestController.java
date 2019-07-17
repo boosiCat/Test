@@ -34,12 +34,8 @@ public class TestController {
     }
 
     @RequestMapping("/beanTest")
-    public void beanTest(String url, HttpServletRequest request, HttpServletResponse response) {
-        try {
-            response.sendRedirect(url + "?string=111");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void beanTest() {
+        testService.run();
     }
 
     @RequestMapping("/List")

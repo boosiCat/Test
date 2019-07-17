@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Author 小台
- * @Date 2019/4/3011:15
+ * @Author cailiugen
+ * @Date 2019/7/17
  */
 @Configuration
-public class TestHandlerInterceptor implements HandlerInterceptor {
+public class InitHandlerInterceptor implements HandlerInterceptor {
+
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         return true;
@@ -25,4 +26,5 @@ public class TestHandlerInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
     }
+
 }
