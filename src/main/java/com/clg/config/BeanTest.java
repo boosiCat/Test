@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @Author 小台
- * @Date 2019/4/2211:17
+ * @Date 2019/4/22
  */
 @Configuration
 public class BeanTest {
