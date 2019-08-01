@@ -5,7 +5,9 @@ import com.clg.entity.JsonResult;
 import com.clg.entity.UserStatis;
 import com.clg.entity.UserStatisResp;
 import com.clg.service.TestService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,6 +48,19 @@ public class TestController {
             e.printStackTrace();
         }
         return "nonono";
+    }
+
+    @GetMapping("/getUserDefineItem")
+    public String getUserDefineItem(String id){
+        return testService.getUserDefineItem(id);
+    }
+    @GetMapping("/getData")
+    public String getUserDefineItem(String table,String id){
+        return testService.getUserDefineItem(table,id);
+    }
+    @GetMapping("/getDataSelective")
+    public String getUserDefineItemSelective(String userId,String id){
+        return testService.getUserDefineItemSelective(userId,id);
     }
 
 
