@@ -141,13 +141,6 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.apache</groupId>-->
-			<!--<artifactId>axis</artifactId>-->
-			<!--<version>1.0</version>-->
-			<!--<scope>system</scope>-->
-			<!--<systemPath>${project.basedir}/src/main/webapp/lib/axis.jar</systemPath>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
@@ -155,11 +148,105 @@
 		</dependency>
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profileActive>dev</profileActive>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<includes>
+							<include>application-${profileActive}.yml</include>
+						</includes>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<profileActive>prod</profileActive>
+			</properties>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<includes>
+							<include>application-${profileActive}.yml</include>
+						</includes>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
+
 	<build>
+		<finalName>xy-api</finalName>
+		<resources>
+			<!--<resource>-->
+				<!--<directory>src/main/webapp/lib</directory>-->
+				<!--<targetPath>BOOT-INF/lib/</targetPath>-->
+				<!--<includes>-->
+					<!--<include>**/*.jar</include>-->
+				<!--</includes>-->
+			<!--</resource>-->
+			<resource>
+				<directory>src/main/java</directory>
+				<!-- 此配置不可缺，否则mybatis的Mapper.xml将会丢失 -->
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<!--指定资源的位置-->
+			<resource>
+				<filtering>true</filtering>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>application-dev.yml</exclude>
+					<exclude>application-fat.yml</exclude>
+					<exclude>application-uat.yml</exclude>
+					<exclude>application-pro.yml</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<compilerVersion>1.8</compilerVersion>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- 忽略测试 -->
+					<skip>true</skip>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
